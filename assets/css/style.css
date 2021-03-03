@@ -5,3 +5,20 @@
 .card {
     background-color: #48b4f3;
 }
+
+.low {
+    background-color: green;
+
+}
+
+.med {
+    background-color: yellow;
+}
+
+.med-high {
+background-color: orange;
+}
+
+.high {
+    background-color: red;
+}
