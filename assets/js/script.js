@@ -1,6 +1,7 @@
 //API Key
 var APIkey = "a17e1499228be1f9c294ac18b234c7d7";
 
+
 //display current date next to current city
 var currentDate = moment().format("L");
 $("#current-date").text("(" + currentDate + ")");
@@ -34,21 +35,18 @@ function getWeather(search) {
           console.log('ERROR');
         },
         success: function(val) {
-          console.log("-- || Open Weather Map Data || --");
-          console.log("City Name:", val.name);
-          console.log("Time of data calculation, unix, UTC:", val.dt);
           console.log("Weather Icon:", val.weather[0].icon);
-          console.log("Temperature:", val.main.temp, "°F");
-          console.log("Humidity:", val.main.humidity, "%");
-          console.log("Wind Speed:", val.wind.speed, "MPH");
 
-          $("#current-city").text(val.name);
-          $("#current-temp").html(val.main.temp + ' °F');
-          $("#current-humidity").html(val.main.humidity + '%');
-          $("#current-wind-speed").html(val.wind.speed + ' MPH');
+          //display of current weather
+          $("#current-city").text(val.name +  "(" + currentDate + ")");
+          $('#wicon').attr("src", "http://openweathermap.org/img/wn/" + val.weather[0].icon + ".png");
+          $("#current-temp").html(val.main.temp + " °F");
+          $("#current-humidity").html(val.main.humidity + "%");
+          $("#current-wind-speed").html(val.wind.speed + " MPH");
+          
 
         }
       });
- 
+   
 
 };
