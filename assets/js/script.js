@@ -32,10 +32,10 @@ function getWeather(search) {
         type: "get",
         url: queryURL,
         error: function(val) {
-          console.log('ERROR');
+          //invalid city 
+          alert("Error: City not found.");
         },
         success: function(val) {
-          console.log("Weather Icon:", val.weather[0].icon);
 
           //display of current weather
           $("#current-city").text(val.name +  "(" + currentDate + ")");
@@ -43,10 +43,8 @@ function getWeather(search) {
           $("#current-temp").html(val.main.temp + " °F");
           $("#current-humidity").html(val.main.humidity + "%");
           $("#current-wind-speed").html(val.wind.speed + " MPH");
-          
-
         }
       });
-   
+
 
 };
