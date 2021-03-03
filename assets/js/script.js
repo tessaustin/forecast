@@ -59,16 +59,16 @@ function getWeather(search) {
               $("#uv-index").html(data.value);
 
               if (data.value < 3) {
-              $("#uv-index").addClass("low")
+              $("#uv-index").addClass("low");
               } 
               else if (data.value < 6) {
-                $("#uv-index").addClass("med")
+                $("#uv-index").addClass("med");
               }
               else if (data.value < 9) {
-                $("#uv-index").addClass("med-high")
+                $("#uv-index").addClass("med-high");
               }
               else {
-                $("#uv-index").addClass("high")
+                $("#uv-index").addClass("high");
               }
             },
 
