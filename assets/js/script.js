@@ -39,7 +39,7 @@ function getWeather(search) {
 
       //display of current weather
       $("#current-city").text(val.name +  "(" + currentDate + ")");
-      $('#wicon').attr("src", "http://openweathermap.org/img/wn/" + val.weather[0].icon + ".png");
+      $("#wicon").attr("src", "http://openweathermap.org/img/wn/" + val.weather[0].icon + ".png");
       $("#current-temp").html(val.main.temp + " °F");
       $("#current-humidity").html(val.main.humidity + "%");
       $("#current-wind-speed").html(val.wind.speed + " MPH");
@@ -102,8 +102,11 @@ function getWeather(search) {
           for (var i=1; i < 6; i++) {
             var individual = fdata.daily[i];             
             var itemDateTime = new Date(individual.dt * 1000);
-            // put the data in the html here              
+            //visible data 5 day              
             $("#"+ (i) +" h5").text(itemDateTime.toLocaleDateString());   
+            $("#wicon" + i).attr("src", "http://openweathermap.org/img/wn/" 
+            + individual.weather[0].icon 
+            + ".png");
             $("#temp" + i).html(individual.temp.day + " °F");
             $("#humi" + i).html(individual.humidity + "%");
 
