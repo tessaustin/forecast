@@ -100,10 +100,12 @@ function getWeather(search) {
         success: function(fdata) {
           console.log("future data success");
           for (var i=1; i < 6; i++) {
-            var daily = fdata.daily[i];             
-            var itemDateTime = new Date(daily.dt * 1000);
+            var individual = fdata.daily[i];             
+            var itemDateTime = new Date(individual.dt * 1000);
             // put the data in the html here              
             $("#"+ (i) +" h5").text(itemDateTime.toLocaleDateString());   
+            $("#temp").html(individual.temp.day + " °F");
+            $("#humi").html(individual.humidity + "%");
 
             console.log(itemDateTime.toLocaleDateString());
           }
