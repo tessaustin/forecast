@@ -104,8 +104,8 @@ function getWeather(search) {
             var itemDateTime = new Date(individual.dt * 1000);
             // put the data in the html here              
             $("#"+ (i) +" h5").text(itemDateTime.toLocaleDateString());   
-            $("#temp").html(individual.temp.day + " °F");
-            $("#humi").html(individual.humidity + "%");
+            $("#temp" + i).html(individual.temp.day + " °F");
+            $("#humi" + i).html(individual.humidity + "%");
 
             console.log(itemDateTime.toLocaleDateString());
           }
