@@ -23,58 +23,97 @@ $("#search-btn").on("click", function() {
 //retreive current weather
 function getWeather(search) {
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="
-      + search
-      + "&units=imperial"
-      + "&appid=" 
-      + APIkey;
+    + search
+    + "&units=imperial"
+    + "&appid=" 
+    + APIkey;
+
+  $.ajax ({
+    type: "get",
+    url: queryURL,
+    error: function(val) {
+      //invalid city 
+      alert("Error: City not found.");
+    },
+    success: function(val) {
+
+      //display of current weather
+      $("#current-city").text(val.name +  "(" + currentDate + ")");
+      $('#wicon').attr("src", "http://openweathermap.org/img/wn/" + val.weather[0].icon + ".png");
+      $("#current-temp").html(val.main.temp + " °F");
+      $("#current-humidity").html(val.main.humidity + "%");
+      $("#current-wind-speed").html(val.wind.speed + " MPH");
+        
+      //data pulled for uv
+      var lat = val.coord.lat;
+      var lon = val.coord.lon;
+      var uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" 
+      + lat + "&lon=" + lon 
+      + "&appid=" + APIkey;
+
+      console.log("uvQueryURL: " + uvQueryURL);
 
       $.ajax ({
         type: "get",
-        url: queryURL,
-        error: function(val) {
-          //invalid city 
-          alert("Error: City not found.");
+        url: uvQueryURL,
+        //cannot retrieve data
+        error: function(data) {
+          alert("Error: Data not provided.");
+        },  
+        //display uv index & color
+        success: function(data) {
+          $("#uv-index").html(data.value);
+
+          if (data.value < 3) {
+            $("#uv-index").addClass("low");
+          } 
+          else if (data.value < 6) {
+            $("#uv-index").addClass("med");
+          }
+          else if (data.value < 9) {
+            $("#uv-index").addClass("med-high");
+          }
+          else {
+            $("#uv-index").addClass("high");
+          }
         },
-        success: function(val) {
+      });
 
-          //display of current weather
-          $("#current-city").text(val.name +  "(" + currentDate + ")");
-          $('#wicon').attr("src", "http://openweathermap.org/img/wn/" + val.weather[0].icon + ".png");
-          $("#current-temp").html(val.main.temp + " °F");
-          $("#current-humidity").html(val.main.humidity + "%");
-          $("#current-wind-speed").html(val.wind.speed + " MPH");
-        
-      var lat = val.coord.lat;
-      var lon = val.coord.lon;
-      var uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + APIkey;
-            console.log(uvQueryURL)
-          $.ajax ({
-            type: "get",
-            url: uvQueryURL,
-            error: function(data) {
-              console.log(data)
-            },
-            success: function(data) {
-              console.log(data)
-              $("#uv-index").html(data.value);
+      //data pulled for 5 day forecast info
+      var futureQueryURL = 'https://api.openweathermap.org/data/2.5/onecall'
+        + '?lat=' + lat 
+        + '&lon=' + lon 
+        + "&units=imperial"
+        + '&exclude=minutely,hourly,current,alerts' 
+        + '&appid=' + APIkey;
 
-              if (data.value < 3) {
-              $("#uv-index").addClass("low");
-              } 
-              else if (data.value < 6) {
-                $("#uv-index").addClass("med");
-              }
-              else if (data.value < 9) {
-                $("#uv-index").addClass("med-high");
-              }
-              else {
-                $("#uv-index").addClass("high");
-              }
-            },
+      console.log("futureQueryURL: " + futureQueryURL);
 
-          })
+      $.ajax ({
+        type: "get",
+        url: futureQueryURL,
+        //cannot retrieve data
+        error: function(fdata) {
+          alert("Error: Future forecast not provided.");
+        },  
+        //display uv index & color
+        success: function(fdata) {
+          console.log("future data success");
+          for (var i=1; i < 6; i++) {
+            var daily = fdata.daily[i];             
+            var itemDateTime = new Date(daily.dt * 1000);
+            // put the data in the html here              
+            $("#one").html(itemDateTime.toLocaleDateString);
+
+            console.log(itemDateTime.toLocaleDateString());
+          }
         },
-    });   
+      });
+
+
+
+    },
+  });   
 
 
 
@@ -94,16 +133,16 @@ function getWeather(search) {
           // clear old content
           $("#current-city").empty();
           $("#five-day-forecast").empty();
-*/          
+              */          
 
 
-/*        
+              /*        
 
 
       storeHistory(name);
 
 
       $("#weather-content").show();
-  })
-*/
+    })
+  */
 };
