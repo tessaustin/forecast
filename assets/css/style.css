@@ -3,7 +3,7 @@
 }
 
 .card {
-    background-color: #48b4f3;
+    background-color: #77c4f1;
 }
 
 .low {
@@ -36,4 +36,8 @@
     padding: 3px;
     width: 150px;
     height: 100px;
+}
+
+.city-info {
+    background-color:  #77c4f1;
 }
