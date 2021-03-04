@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!--Bootstrap-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <!--FontAwesome-->    
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!--FontAwesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-        <!--Style.CSS-->       
+    <!--Style.CSS-->
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
-<body>  
+
+<body>
     <div class="container-fluid">
         <!--Header-->
         <div class="row navbar navbar-dark bg-dark">
@@ -37,7 +40,7 @@
                 <!--History-->
                 <div class="card">
                     <ul class="list-group list-group-flush" id="search-history-list">
-                        
+
                     </ul>
                     <button id="clear-history" class="btn btn-sm btn-secondary hide">Clear History</button>
                 </div>
@@ -46,7 +49,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="city-info border rounded my-3 px-3 py-3">
-                            <h2 id="current-city">City Information <small class="text-muted" id="current-date"></small></h2>
+                            <h2 id="current-city">City Information <small class="text-muted" id="current-date"></small>
+                            </h2>
                             <div><img id="wicon" src=""></div>
                             <!--Day of detailed info-->
                             <p class="mb-0">Temperature: <span id="current-temp"></span></p>
@@ -65,51 +69,51 @@
                 <div id="five-day-forecast" class="row">
                     <div class="col-2">
                         <div class="card">
-                            <div class="card-body" id="one">
-                            <h5 class="card-title">Date</h5>
-                            <i class="fa fa-sun"></i>
-                            <p class="card-text">Temp: </p>
-                            <p class="card-text">Humidity: </p>
+                            <div class="card-body" id="1">
+                                <h5 class="card-title">Date</h5>
+                                <i class="fa fa-sun"></i>
+                                <p class="card-text">Temp: </p>
+                                <p class="card-text">Humidity: </p>
                             </div>
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="card">
-                            <div class="card-body" id="two">
-                            <h5 class="card-title">Date</h5>
-                            <i class="fa fa-sun"></i>
-                            <p class="card-text">Temp: </p>
-                            <p class="card-text">Humidity: </p>
+                            <div class="card-body" id="2">
+                                <h5 class="card-title">Date</h5>
+                                <i class="fa fa-sun"></i>
+                                <p class="card-text">Temp: </p>
+                                <p class="card-text">Humidity: </p>
                             </div>
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="card">
-                            <div class="card-body" id="three">
-                            <h5 class="card-title">Date</h5>
-                            <i class="fa fa-sun"></i>
-                            <p class="card-text">Temp: </p>
-                            <p class="card-text">Humidity: </p>
+                            <div class="card-body" id="3">
+                                <h5 class="card-title">Date</h5>
+                                <i class="fa fa-sun"></i>
+                                <p class="card-text">Temp: </p>
+                                <p class="card-text">Humidity: </p>
                             </div>
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="card">
-                            <div class="card-body" id="four">
-                            <h5 class="card-title">Date</h5>
-                            <i class="fa fa-sun"></i>
-                            <p class="card-text">Temp: </p>
-                            <p class="card-text">Humidity: </p>
+                            <div class="card-body" id="4">
+                                <h5 class="card-title">Date</h5>
+                                <i class="fa fa-sun"></i>
+                                <p class="card-text">Temp: </p>
+                                <p class="card-text">Humidity: </p>
                             </div>
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="card">
-                            <div class="card-body" id="five">
-                            <h5 class="card-title">Date</h5>
-                            <i class="fa fa-sun"></i>
-                            <p class="card-text">Temp: </p>
-                            <p class="card-text">Humidity: </p>
+                            <div class="card-body" id="5">
+                                <h5 class="card-title">Date</h5>
+                                <i class="fa fa-sun"></i>
+                                <p class="card-text">Temp: </p>
+                                <p class="card-text">Humidity: </p>
                             </div>
                         </div>
                     </div>
@@ -119,16 +123,17 @@
     </div>
 
 
-        <!-- jQuery -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <!--Bootstrap-->
+    <!--Bootstrap-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-        <!-- moment.js -->
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <!-- moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-        <!--Java.JS-->  
+    <!--Java.JS-->
     <script src="assets/js/script.js"></script>
-    
+
 </body>
+
 </html>

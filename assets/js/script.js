@@ -103,7 +103,7 @@ function getWeather(search) {
             var daily = fdata.daily[i];             
             var itemDateTime = new Date(daily.dt * 1000);
             // put the data in the html here              
-            $("#one").html(itemDateTime.toLocaleDateString);
+            $("#"+ (i) +" h5").text(itemDateTime.toLocaleDateString());   
 
             console.log(itemDateTime.toLocaleDateString());
           }
