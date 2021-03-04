@@ -33,7 +33,7 @@ function getWeather(search) {
     + "&units=imperial"
     + "&appid=" 
     + APIkey;
-
+    
   $.ajax ({
     type: "get",
     url: queryURL,
@@ -49,7 +49,7 @@ function getWeather(search) {
       $("#current-temp").html(val.main.temp + " °F");
       $("#current-humidity").html(val.main.humidity + "%");
       $("#current-wind-speed").html(val.wind.speed + " MPH");
-        
+      
       //data pulled for uv
       var lat = val.coord.lat;
       var lon = val.coord.lon;
@@ -123,6 +123,7 @@ function getWeather(search) {
     },
   });   
 
+
 // Function to save the city to localStorage
 var saveCity = (newCity) => {
   let cityExists = false;
@@ -192,11 +193,6 @@ $("#clear-history").on("click", (event) => {
 renderCities();
 
 };
-
-
-
-
-
 
 
 
