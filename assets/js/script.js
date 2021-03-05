@@ -1,4 +1,5 @@
 // Initialization START
+
 //API Key
 var APIkey = "a17e1499228be1f9c294ac18b234c7d7";
 
@@ -11,44 +12,11 @@ $("#current-date").text("(" + currentDate + ")");
 
 
 //clickable search btn w/input text
-//$("#search-btn").on("click", function getWeatherFromSearchCity());
-/*
-{
-  citySearch = $("#search-city")
-    .val()
-    .trim();
-
-  if (citySearch === "") {
-    return;
-  }
-
-  $("#search-city").val("");
-  getWeather(citySearch);
-   
-});
-*/
 $('#search-list').on('click', 'li', function() {
   var cityNameHistory = $(this).text();
   getWeather(cityNameHistory);
 });
 
-// New city search button event listener
-/*
-$('#search-btn').on("click", (event) => {
-  event.preventDefault();
-  currentCity = $('#search-city').val();
-  getWeather(event);
-  });
-  
-  // Old searched cities buttons event listener
-  $('#search-list').on("click", (event) => {
-    event.preventDefault();
-    $('#search-city').val(event.target.textContent);
-    currentCity=$('#search-city').val();
-    getWeather(event);
-  });
-*/  
-  
   // Clear old searched cities from localStorage event listener
   $("#clear-history").on("click", (event) => {
     localStorage.clear();
@@ -65,9 +33,6 @@ $('#search-btn').on("click", (event) => {
 //Initialization END
 
 //******************FUNCTIONS******************/
-function joe() {
-  console.log("JOE");
-}
 
 function getWeatherFromSearchCity(event) {
   citySearch = $("#search-city")
@@ -131,6 +96,8 @@ function getWeather(search) {
         success: function(data) {
           $("#uv-index").html(data.value);
 
+          $("#uv-index").removeClass();
+          
           if (data.value < 3) {
             $("#uv-index").addClass("low");
           } 
