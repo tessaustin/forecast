@@ -11,7 +11,9 @@ $("#current-date").text("(" + currentDate + ")");
 
 
 //clickable search btn w/input text
-$("#search-btn").on("click", function() {
+//$("#search-btn").on("click", function getWeatherFromSearchCity());
+/*
+{
   citySearch = $("#search-city")
     .val()
     .trim();
@@ -23,6 +25,11 @@ $("#search-btn").on("click", function() {
   $("#search-city").val("");
   getWeather(citySearch);
    
+});
+*/
+$('#search-list').on('click', 'li', function() {
+  var cityNameHistory = $(this).text();
+  getWeather(cityNameHistory);
 });
 
 // New city search button event listener
@@ -40,17 +47,44 @@ $('#search-btn').on("click", (event) => {
     currentCity=$('#search-city').val();
     getWeather(event);
   });
+*/  
   
   // Clear old searched cities from localStorage event listener
   $("#clear-history").on("click", (event) => {
     localStorage.clear();
-    renderCities();
+    searchHistoryArr.length = 0;
+    $('#search-list').empty();
   });
-*/  
+
+  displayHistory();
+
+  if (searchHistoryArr.length > 0) {
+    getWeather(searchHistoryArr[searchHistoryArr.length - 1].city);
+  }
 
 //Initialization END
 
 //******************FUNCTIONS******************/
+function joe() {
+  console.log("JOE");
+}
+
+function getWeatherFromSearchCity(event) {
+  citySearch = $("#search-city")
+    .val()
+    .trim();
+
+  if (citySearch === "") {
+    return;
+  }
+
+  $("#search-city").val("");
+  getWeather(citySearch);
+
+  if (event.type == 'submit') {
+    event.preventDefault();
+  }
+}
 
 //retreive current weather
 function getWeather(search) {
@@ -229,13 +263,34 @@ function storeHistory(citySearchName) {
       }
     }
   }
-//  $('#search-history').empty();
-//  displayHistory();
+  $('#search-list').empty();
+  displayHistory();
 }
 
+function displayHistory() {
+  var getLocalSearchHistory = localStorage.getItem('searchHistory');
+  var localSearchHistory = JSON.parse(getLocalSearchHistory);
 
+  if (getLocalSearchHistory === null) {
+    createHistory();
+    getLocalSearchHistory = localStorage.getItem('searchHistory');
+    localSearchHistory = JSON.parse(getLocalSearchHistory);
+  }
 
+  for (var i = 0; i < localSearchHistory.length; i++) {
+    var historyLi = $('<li>');
+    historyLi.addClass('list-group-item');
+    historyLi.text(localSearchHistory[i].city);
+    $('#search-list').prepend(historyLi);
+    $('#history-container').show();
+  }
+  return (searchHistoryArr = localSearchHistory);
+}
 
+function createHistory() {
+  searchHistoryArr.length = 0;
+  localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArr));
+}
 
 
 

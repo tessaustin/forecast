@@ -27,19 +27,19 @@
         <div class="row content-row">
             <div class="col-12 col-md-3 bg-light pt-3">
                 <h5>Search for a city:</h5>
-                <form>
+                <form onsubmit="getWeatherFromSearchCity(event)">
                     <div class="form-group input-group">
-                        <input type="text" class="form-control" id="search-city" placeholder="Enter city">
+                        <input type="text" autocomplete="off" class="form-control" id="search-city" placeholder="Enter city">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button" id="search-btn">
+                            <button class="btn btn-primary" type="button" id="search-btn" onclick="getWeatherFromSearchCity(event)">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
                     </div>
                 </form>
                 <!--History-->
-                <div class="card">
-                    <ul class="list-group list-group-flush" id="search-history-list">
+                <div class="card" id="history-container">
+                    <ul class="list-group list-group-flush" id="search-list">
 
                     </ul>
                     <button id="clear-history" class="btn btn-sm btn-secondary hide">Clear History</button>
